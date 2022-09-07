@@ -7,5 +7,7 @@ COPY . .
 RUN npm run build
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
+RUN ls
+RUN pwd
 ### COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/idbp-partner-portal /usr/share/nginx/html
