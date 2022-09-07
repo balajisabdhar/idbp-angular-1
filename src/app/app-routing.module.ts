@@ -40,8 +40,8 @@ import { RuleEngineAcceleratorComponent } from './rule-engine-accelerator/rule-e
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'license', component: LicenseComponent },
-  { path: 'login', component: LoginComponent },
+  { path: '/license', component: LicenseComponent },
+  { path: '/login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'resetpassword', component: ForgotPasswordComponent },
   { path: 'changepassword', component: ChangePasswordComponent, canActivate: [AuthGuard] },
