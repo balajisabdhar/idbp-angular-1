@@ -1,0 +1,137 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure APIC </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="idbp">
+        <button ibmButton [routerLink]="['/dashboard/manageresources/apic/createapic']" routerLinkActive="active"
+            style="background-color: #3d70b2;" [disabled]="this.apicRoutesMatched">Create</button>
+    </div>
+    <div>
+        <table class="bx--data-table" *ngIf="this.apicTemp" style="width: 50%;">
+            <thead>
+                <tr>
+                    <th><span class="bx--table-header-label">Name</span></th>
+                    <th><span class="bx--table-header-label">Prov Org</span></th>
+                    <th><span class="bx--table-header-label">Catalog</span></th>
+                    <th><span class="bx--table-header-label">Activities</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let apic of this.apicList">
+                    <td>{{apic.name}}</td>
+                    <td>{{apic.provorg}}</td>
+                    <td>{{apic.catalog}}</td>
+                    <td>
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#editApicModal"
+                                (click)="onEditApic(apic._id, apic.name, apic.platform, apic.realm, apic.provorg, apic.catalog)">
+                                Edit
+                            </ibm-overflow-menu-option>
+                            <ibm-overflow-menu-option (click)="onDeleteApic(apic._id)"> Delete
+                            </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bx--data-table" *ngIf="!this.apicTemp">
+            <p> No Records Available</p>
+        </table>
+    </div>
+    <div class="modal fade" id="editApicModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editApicModalLabel">Edit APIC</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="editApicForm" (ngSubmit)="onEditApicSubmit()" class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                                        Name
+                                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                                            value="{{this.name}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.platform.pristine && f.platform.errors"
+                                        [invalidText]="'Platform Base URL is required'">
+                                        Platform Base URL
+                                        <input ibmText formControlName="platform"
+                                            [invalid]="submitted && f.platform.errors" value="{{this.plat}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.realm.pristine && f.realm.errors"
+                                        [invalidText]="'Realm is required'">
+                                        Realm
+                                        <input ibmText formControlName="realm" [invalid]="submitted && f.realm.errors"
+                                            value="{{this.rel}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.username.pristine && f.username.errors"
+                                        [invalidText]="'Username is required'">
+                                        Username
+                                        <input ibmText formControlName="username"
+                                            [invalid]="submitted && f.username.errors" [placeholder]="'Enter Username'">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.password.pristine && f.password.errors"
+                                        [invalidText]="'Password is required'">
+                                        Password
+                                        <input ibmText type="password" formControlName="password"
+                                            [invalid]="submitted && f.password.errors" [placeholder]="'Enter Password'">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.pOrg.pristine && f.pOrg.errors"
+                                        [invalidText]="'Prov Organization is required'">
+                                        Prov Organization
+                                        <input ibmText formControlName="pOrg" [invalid]="submitted && f.pOrg.errors"
+                                            value="{{this.prov}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.catalog.pristine && f.catalog.errors"
+                                        [invalidText]="'Catalog Name is required'">
+                                        Catalog Name
+                                        <input ibmText formControlName="catalog"
+                                            [invalid]="submitted && f.catalog.errors" value="{{this.cat}}">
+                                    </ibm-label>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>

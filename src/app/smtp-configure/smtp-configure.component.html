@@ -1,0 +1,70 @@
+<div class="cb--page-header__container">
+  <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+    <div _ngcontent-yve-c2="">
+      <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Create & Configure SMTP Server Options
+      </div>
+    </div>
+  </header>
+  <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+  <div toastContainer></div>
+  <div class="idbp-form-container">
+    <h4>Create SMTP Configure</h4>
+    <form [formGroup]="serverForm" (ngSubmit)="onServerSubmit()" class="signin-form">
+      <div class="forms-gds">
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.serviceName.pristine && f.serviceName.errors"
+            [invalidText]="'Service Name is required'">
+            Service Name
+            <input ibmText formControlName="serviceName" [invalid]="submitted && f.serviceName.errors"
+              [placeholder]="'Enter Service Name'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.host.pristine && f.host.errors" [invalidText]="'Host is required'">
+            Host
+            <input ibmText formControlName="host" [invalid]="submitted && f.host.errors" [placeholder]="'Enter Host'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.port.pristine && f.port.errors" [invalidText]="'* only numbers are allowed'">
+            Port
+            <input ibmText formControlName="port" [invalid]="submitted && f.port.errors" [placeholder]="'Enter Port'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.secure.pristine && f.secure.errors" [invalidText]="'Secure is required'">
+            Secure
+            <input ibmText formControlName="secure" [invalid]="submitted && f.secure.errors"
+              [placeholder]="'Enter Secure'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.username.pristine && f.username.errors" [invalidText]="'Username is required'">
+            Username
+            <input ibmText formControlName="username" [invalid]="submitted && f.username.errors"
+              [placeholder]="'Enter Username'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.password.pristine && f.password.errors" [invalidText]="'Password is required'">
+            Password
+            <input ibmText type="password" formControlName="password" [invalid]="submitted && f.password.errors"
+              [placeholder]="'Enter Password'">
+          </ibm-label>
+        </fieldset>
+        <div class="form-button">
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+            [routerLink]="['/dashboard/settings/listsmtpconfigure']" routerLinkActive="active">Cancel</button>
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Create SMTP</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

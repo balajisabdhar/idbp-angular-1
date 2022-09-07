@@ -1,0 +1,53 @@
+<ng-container>
+  <div class="login-left login-col">
+    <div class="ibm-logo"></div>
+    <div class="product-title">
+      <h4>IBM Digital Banking Platform</h4>
+    </div>
+    <div toastContainer></div>
+    <div class="login-form">
+      <fieldset class="bx--fieldset">
+        <h4>Create Account</h4>
+      </fieldset>
+      <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="signin-form">
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.firstName.pristine && f.firstName.errors" [invalidText]="ctrl.firstName.invalidText">
+            First Name
+            <input ibmText formControlName="firstName" [invalid]="!f.firstName.pristine && f.firstName.errors"
+              [disabled]="ctrl.firstName.disabled" [placeholder]="'Enter First Name'">
+          </ibm-label>
+        </fieldset>
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.lastName.pristine && f.lastName.errors" [invalidText]="ctrl.lastName.invalidText">
+            Last Name
+            <input ibmText formControlName="lastName" [invalid]="!f.lastName.pristine && f.lastName.errors"
+              [disabled]="ctrl.lastName.disabled" [placeholder]="'Enter Last Name'">
+          </ibm-label>
+        </fieldset>
+        <fieldset class="bx--fieldset">
+          <ibm-label>
+            Email
+            <input ibmText formControlName="email">
+          </ibm-label>
+        </fieldset>
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.password.pristine && f.password.errors" [invalidText]="ctrl.password.invalidText">
+            Password
+            <input ibmText type="password" formControlName="password"
+              [invalid]="!f.password.pristine && f.password.errors" [disabled]="ctrl.password.disabled"
+              [placeholder]="'Enter Password'">
+          </ibm-label>
+        </fieldset>
+        <div class="button-section">
+          <button id="submit" [ibmButton]="'primary'" [size]="'normal'" type="submit">
+            Create Account
+            <svg class="bx--btn__icon" width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="login-right login-col"></div>
+</ng-container>

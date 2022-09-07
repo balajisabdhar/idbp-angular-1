@@ -1,0 +1,185 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Create an Active Environment
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"> </div>
+</div>
+<div class="cb--page-content__container">
+    <div toastContainer></div>
+    <div class="idbp-form-container">
+        <h4>Create Details for your respective Environment</h4>
+        <form [formGroup]="nonEnvForm" (ngSubmit)="onNonEnvSubmit()" class="signin-form">
+            <div class="forms-gds">
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.name.pristine && f.name.errors" [invalidText]="'* only sit/uat/prod are accepted values due to limited resources in the POC Environment'">
+                        Name
+                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                            [placeholder]="'Enter Name'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label>
+                        Description (optional)
+                        <input ibmText formControlName="desc" [placeholder]="'Enter Description'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Container Platform
+                    <a href="/dashboard/manageresources/createcontainerplatform">
+                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+                            width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"
+                            style="will-change: transform; margin-left: 355px;">
+                            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+                            </path>
+                            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+                            </path>
+                            <title>Create Container Platform</title>
+                        </svg>
+                    </a>
+                    <br /><br />
+                    <select class="custom-select" formControlName="containerPlatform">
+                        <option value="">Choose your Container Platform</option>
+                        <option *ngFor="let plat of cPlatformList" [ngValue]="plat.name">{{plat.name}}</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.containerPlatform.errors">
+                        Container Platform is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Container Registry
+                    <a href="/dashboard/manageresources/containerregistry/createcontainerregistry">
+                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+                            width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"
+                            style="will-change: transform; margin-left: 358px;">
+                            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+                            </path>
+                            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+                            </path>
+                            <title>Create Container Registry</title>
+                        </svg>
+                    </a>
+                    <br /><br />
+                    <select class="custom-select" formControlName="containerRegistry">
+                        <option value="">Choose your Container Registry</option>
+                        <option *ngFor="let registry of cRegistryList" [ngValue]="registry.name">{{registry.name}}
+                        </option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.containerRegistry.errors">
+                        Container Registry is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    APIC
+                    <a href="/dashboard/manageresources/apic/createapic">
+                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+                            width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"
+                            style="will-change: transform; margin-left: 444px;">
+                            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+                            </path>
+                            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+                            </path>
+                            <title>Create APIC</title>
+                        </svg>
+                    </a>
+                    <br /><br />
+                    <select class="custom-select" formControlName="apic">
+                        <option value="">Choose your APIC</option>
+                        <option *ngFor="let ap of apicList" [ngValue]="ap.name">{{ap.name}}</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.apic.errors">
+                        APIC is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Banking Standard
+                    <br /> <br />
+                    <select class="custom-select" formControlName="bankingServices">
+                        <option value="">Choose your Banking Standard</option>
+                        <option *ngFor="let bank of bankList" [ngValue]="bank.data.name">
+                            {{bank.data.title}}</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.bankingServices.errors">
+                        Banking Standard is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Core Banking
+                    <a href="/dashboard/cbs/createcbs">
+                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+                            width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"
+                            style="will-change: transform; margin-left: 391px;">
+                            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+                            </path>
+                            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+                            </path>
+                            <title>Create Core Banking</title>
+                        </svg>
+                    </a>
+                    <br /> <br />
+                    <select class="custom-select" formControlName="cbs">
+                        <option value="">Choose your Core Banking</option>
+                        <option *ngFor="let cb of cbsList" [ngValue]="cb.name">{{cb.name}}</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.cbs.errors">
+                        Core Banking is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Notification
+                    <a href="/dashboard/manageresources/notification/createnotification">
+                        <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"
+                            width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"
+                            style="will-change: transform; margin-left: 401px;">
+                            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+                            </path>
+                            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+                            </path>
+                            <title>Create Notification</title>
+                        </svg>
+                    </a>
+                    <br /><br />
+                    <select class="custom-select" formControlName="notification">
+                        <option value="">Choose your Notification</option>
+                        <option *ngFor="let noti of notificationList" [ngValue]="noti.name">{{noti.name}}
+                        </option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.notification.errors">
+                        Notification is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Select the Service to be deployed <br /><br />
+                    <table class="table hover">
+                        <tbody>
+                            <tr *ngFor="let ser of this.servicesDeploy">
+                                <td><input type="checkbox" formControlName="services" name="services" value="{{ser}}"
+                                        (change)="onServicesCboxChangeHandler($event)"> </td>
+                                <td>{{ser}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.services.errors">
+                        Services is required
+                    </div>
+                </fieldset>
+                <div class="form-button">
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+                        [routerLink]="['/dashboard/manageenvironment']" routerLinkActive="active">Cancel</button>
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Create
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+footer {
+    display: flex;
+    padding: 1em 4em 0.3em 4em;
+    margin:  -3.5em 0 0 0;
+    div.copyright {
+        margin-right: auto;
+        margin-left: 20px;
+        flex-grow: 1;
+    }
+    .powered-by {
+        flex: 0 0 auto;
+        display: flex;
+        flex-flow: row nowrap;
+        align-content: center;
+        span {
+            margin-right: 1em;
+            display: inline-block;
+            align-self: center;
+        }
+        .ibm-footer-logo {
+            display: inline-block;
+            background: url('../../assets/images/ibm_2x.s8.png') no-repeat;
+            background-size: contain;
+            width: 66px;
+            height: 26px;
+        }
+    }
+}

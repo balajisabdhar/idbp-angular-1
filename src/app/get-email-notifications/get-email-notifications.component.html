@@ -1,0 +1,124 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure Email Server </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="idbp">
+        <button ibmButton [routerLink]="['/dashboard/settings/listsmtpconfigure/createsmtp']" routerLinkActive="active"
+            style="background-color: #3d70b2;" [disabled]="this.smtpTemp || this.smtpRoutesMatched">Create</button>
+    </div>
+    <div>
+        <p>This is the currently configured email server</p>
+        <table class="bx--data-table" *ngIf="this.smtpTemp" style="width: 50%;">
+            <thead>
+                <tr>
+                    <th><span class="bx--table-header-label">Service Name </span></th>
+                    <th><span class="bx--table-header-label">Host</span></th>
+                    <th><span class="bx--table-header-label">Activities</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let smtp of this.smtpsList">
+                    <td>{{smtp.servicename}}</td>
+                    <td>{{smtp.host}}</td>
+                    <td>
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#editEmailModal"
+                                (click)="onEditEmailNotification(smtp._id, smtp.servicename, smtp.host, smtp.port, smtp.secure)">
+                                Edit </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bx--data-table" *ngIf="!this.smtpTemp">
+            <p> No Records Available</p>
+        </table>
+    </div>
+    <div class="modal fade" id="editEmailModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editEmailModalLabel">Edit Email Server</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="editEmailForm" (ngSubmit)="onEditEmailSubmit()" class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.serviceName.pristine && f.serviceName.errors"
+                                        [invalidText]="'Service Name is required'">
+                                        Service Name
+                                        <input ibmText formControlName="serviceName"
+                                            [invalid]="submitted && f.serviceName.errors" value="{{this.servicename}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.host.pristine && f.host.errors"
+                                        [invalidText]="'Host is required'">
+                                        Host
+                                        <input ibmText formControlName="host" [invalid]="submitted && f.host.errors"
+                                            value="{{this.host}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.port.pristine && f.port.errors"
+                                        [invalidText]="'* only numbers are allowed'">
+                                        Port
+                                        <input ibmText formControlName="port" [invalid]="submitted && f.port.errors"
+                                            value="{{this.port}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.secure.pristine && f.secure.errors"
+                                        [invalidText]="'Secure is required'">
+                                        Secure
+                                        <input ibmText formControlName="secure" [invalid]="submitted && f.secure.errors"
+                                            value="{{this.secure}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.username.pristine && f.username.errors"
+                                        [invalidText]="'Username is required'">
+                                        Username
+                                        <input ibmText formControlName="username"
+                                            [invalid]="submitted && f.username.errors" [placeholder]="'Enter Username'">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.password.pristine && f.password.errors"
+                                        [invalidText]="'Password is required'">
+                                        Password
+                                        <input ibmText type="password" formControlName="password"
+                                            [invalid]="submitted && f.password.errors" [placeholder]="'Enter Password'">
+                                    </ibm-label>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>

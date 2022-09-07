@@ -1,0 +1,171 @@
+<div class="cb--page-header__container">
+  <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+    <div _ngcontent-yve-c2="">
+      <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title">Rule Management Form </div>
+    </div>
+  </header>
+  <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+  <div toastContainer></div>
+  <div class="idbp-form-container">
+    <h4>Rule Management</h4>
+    <h5>Please fill in required details.<br> As per inputs rules will be generated in the target enviornment</h5>
+    <br /><br />
+    <form [formGroup]="ruleengineacceleratorForm" (ngSubmit)="onruleengineSubmit()" class="signin-form">
+      <div class="forms-gds">
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.eName.pristine && f.eName.errors" [invalidText]="'Environment Name is required'">
+            Environment Name
+            <input ibmText formControlName="eName" [invalid]="submitted && f.eName.errors"
+              [placeholder]="'Enter Environment Name'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          Rule Type <br /><br />
+          <select class="custom-select" formControlName="ruleType" (change)="onRuleChangeHandler($event)">
+            <option value="">Choose your Rule Type</option>
+            <option value="All">All</option>
+            <option value="Service Name">Service Name</option>
+            <option value="Partner ID">Partner ID</option>
+          </select>
+          <div class="bx--form-requirement" *ngIf="submitted && f.ruleType.errors">
+            Rule Type is required
+          </div>
+        </fieldset>
+        <hr style="height:1.5px;">
+        <fieldset class="bx--fieldset" *ngIf="this.checkedRuleTypeValue == 'Service Name'">
+          <ibm-label>
+            Service Name
+            <input ibmText formControlName="sName" [placeholder]="'Enter Service Name'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset" *ngIf="this.checkedRuleTypeValue == 'Partner ID'">
+          <ibm-label>
+            Partner ID
+            <input ibmText formControlName="pID" [placeholder]="'Enter Partner ID'">
+          </ibm-label>
+        </fieldset>
+
+
+        <h4>Per Transaction Limit</h4>
+        <fieldset class="bx--fieldset">
+          Currency Type <br /><br />
+          <select class="custom-select" formControlName="currencyType">
+            <option value="">Choose your currency</option>
+            <option value="USD">USD</option>
+            <option value="INR">INR</option>
+            <option value="Euros">Euros</option>
+          </select>
+          <div class="bx--form-requirement" *ngIf="submitted && f.currencyType.errors">
+            Currency is required
+          </div>
+        </fieldset>
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.minLimit.pristine && f.minLimit.errors" [invalidText]="'Minimum Limit is required'">
+            Minimum Limit
+            <input ibmText formControlName="minLimit" [invalid]="submitted && f.minLimit.errors"
+              [placeholder]="'Enter Minimum Limit'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.maxLimit.pristine && f.maxLimit.errors" [invalidText]="'Maximum Limit is required'">
+            Maximum Limit
+            <input ibmText formControlName="maxLimit" [invalid]="submitted && f.maxLimit.errors"
+              [placeholder]="'Enter Maximum Limit'">
+          </ibm-label>
+        </fieldset>
+        <hr style="height:1.5px;">
+        <fieldset class="bx--fieldset">
+          <h4>Frequency Limit</h4>
+          <ibm-label [invalid]="!f.limit.pristine && f.limit.errors" [invalidText]="'Limit is required'">
+            Limit
+            <input ibmText formControlName="limit" [invalid]="submitted && f.limit.errors"
+              [placeholder]="'Enter Limit'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          Frequency Type <br /><br />
+          <select class="custom-select" formControlName="frequencyType">
+            <option value="">Frequency Type</option>
+            <option value="Daily">Daily</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Half">Half-Yearly</option>
+          </select>
+          <div class="bx--form-requirement" *ngIf="submitted && f.frequencyType.errors">
+            Frequency Type is required
+          </div>
+        </fieldset>
+        <hr style="height:1.5px;">
+        <fieldset class="bx--fieldset">
+          <h4>Time Limit</h4>
+          <ibm-label [invalid]="!f.start.pristine && f.start.errors" [invalidText]="'Start Time is required'">
+            Start Time
+            <input ibmText formControlName="start" [invalid]="submitted && f.start.errors"
+              [placeholder]="'Enter Start Time'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.end.pristine && f.end.errors" [invalidText]="'End Time is required'">
+            End Time
+            <input ibmText formControlName="end" [invalid]="submitted && f.end.errors" [placeholder]="'Enter End Time'">
+          </ibm-label>
+        </fieldset>
+        <hr style="height:1.5px;">
+        <h4>Compliance</h4>
+        <fieldset class="bx--fieldset">
+          Action <br /><br />
+          <select class="custom-select" formControlName="actionType">
+            <option value="">Choose your action</option>
+            <option value="Reject">Reject</option>
+            <option value="Warning">Warning</option>
+            <option value="Alert">Alert</option>
+          </select>
+          <div class="bx--form-requirement" *ngIf="submitted && f.actionType.errors">
+            Action is required
+          </div>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.Compliance.pristine && f.Compliance.errors" [invalidText]="'Compliance is required'">
+            Compliance
+            <input ibmText formControlName="Compliance" [invalid]="submitted && f.Compliance.errors"
+              [placeholder]="'Compliance'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.Value.pristine && f.Value.errors" [invalidText]="'Value is required'">
+            Value
+            <input ibmText formControlName="Value" [invalid]="submitted && f.Value.errors"
+              [placeholder]="'Value Limit'">
+          </ibm-label>
+        </fieldset>
+
+        <hr style="height:1.5px;">
+        <fieldset class="bx--fieldset">
+          GDPR Protection
+          <ibm-radio-group aria-label="radiogroup" formControlName="gdpr">
+            <ibm-radio value="Yes">
+              Yes
+            </ibm-radio>
+            <ibm-radio value="No">
+              No
+            </ibm-radio>
+          </ibm-radio-group>
+        </fieldset>
+        <div class="form-button">
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+            [routerLink]="['/dashboard']" routerLinkActive="active">Cancel</button>
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+@import "./app.styles.scss";
+
+html, body { 
+    min-height: 100vh; 
+}
+body { 
+    background-color: #f0f0f0;
+    font-size: 12px;
+    margin: 0; 
+    font-family: ibm-plex-sans, Helvetica Neue, Arial, sans-serif;
+    color: #152935;
+    line-height: 1;
+}

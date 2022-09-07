@@ -1,0 +1,9 @@
+ibm-sidenav.bx--side-nav {
+  box-shadow: 3px 0px 3px 0px #ccc;
+  visibility: block;
+  width: 58px;
+}
+
+.bx--side-nav:not(.bx--side-nav--fixed):hover, .bx--side-nav--expanded {
+  width: 10rem
+}

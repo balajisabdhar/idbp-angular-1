@@ -1,0 +1,85 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure Email Templates
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div>
+        <h3>Email Templates</h3>
+        <p>Configure the email templates used to invite & notify users</p> <br />
+        <table class="bx--data-table" *ngIf="this.templateTemp" style="width: 50%;">
+            <thead>
+                <tr>
+                    <th><span class="bx--table-header-label">Template</span></th>
+                    <th><span class="bx--table-header-label">Activities</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let template of this.templateList">
+                    <td>{{template.action}}</td>
+                    <td>
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#editTemplateModal"
+                                (click)="onEditTemplate(template._id, template.subject, template.body)"> Edit
+                            </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bx--data-table" *ngIf="!this.templateTemp">
+            <p> No Records Available</p>
+        </table>
+    </div>
+    <div class="modal fade" id="editTemplateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTemplateModalLabel">Edit Email Template</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="editEmailTemplateForm" (ngSubmit)="onEditEmailTemplateSubmit()"
+                            class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.subject.pristine && f.subject.errors"
+                                        [invalidText]="'Subject is required'">
+                                        Subject
+                                        <input ibmText formControlName="subject"
+                                            [invalid]="submitted && f.subject.errors" value="{{this.subject}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.body.pristine && f.body.errors"
+                                        [invalidText]="'Body is required'">
+                                        Body
+                                        <input ibmText formControlName="body" [invalid]="submitted && f.body.errors"
+                                            value="{{this.body}}">
+                                    </ibm-label>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>

@@ -1,0 +1,85 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure APIC </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div toastContainer></div>
+    <div class="idbp-form-container">
+        <h4>Create APIC Details</h4>
+        <form [formGroup]="apicForm" (ngSubmit)="onAPICSubmit()" class="signin-form">
+            <div class="forms-gds">
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                        Name
+                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                            [placeholder]="'Enter Name'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.platform.pristine && f.platform.errors"
+                        [invalidText]="'Platform Base URL is required'">
+                        Platform Base URL
+                        <input ibmText formControlName="platform" [invalid]="submitted && f.platform.errors"
+                            [placeholder]="'Enter Platform Base URL'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.realm.pristine && f.realm.errors" [invalidText]="'Realm is required'">
+                        Realm
+                        <input ibmText formControlName="realm" [invalid]="submitted && f.realm.errors"
+                            [placeholder]="'Enter Realm'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.username.pristine && f.username.errors"
+                        [invalidText]="'Username is required'">
+                        Username
+                        <input ibmText formControlName="username" [invalid]="submitted && f.username.errors"
+                            [placeholder]="'Enter Username'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.password.pristine && f.password.errors"
+                        [invalidText]="'Password is required'">
+                        Password
+                        <input ibmText type="password" formControlName="password"
+                            [invalid]="submitted && f.password.errors" [placeholder]="'Enter Password'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.pOrg.pristine && f.pOrg.errors"
+                        [invalidText]="'Prov Organization is required'">
+                        Prov Organization
+                        <input ibmText formControlName="pOrg" [invalid]="submitted && f.pOrg.errors"
+                            [placeholder]="'Enter Prov Organization'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.catalog.pristine && f.catalog.errors"
+                        [invalidText]="'Catalog Name is required'">
+                        Catalog Name
+                        <input ibmText formControlName="catalog" [invalid]="submitted && f.catalog.errors"
+                            [placeholder]="'Enter Catalog Name'">
+                    </ibm-label>
+                </fieldset>
+                <div class="form-button">
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+                        [routerLink]="['/dashboard/manageresources/apic']" routerLinkActive="active">Cancel</button>
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Create
+                        APIC</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+:host {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+    .login-col {
+        height: 100%;
+    }
+    .login-left {
+        margin-right: auto;
+        flex-grow: 1;
+        padding: 2rem;
+        .ibm-logo {
+            background: url('../../assets/images/ibm_2x.s8.png') no-repeat;
+            height: 36px;
+            margin: 0 0 2em 0;
+            background-size: contain;
+        }
+        .product-title {
+            display: flex;
+            align-items: center;
+            margin: 0 0 2em 0;
+            h4 {
+                margin-right: auto;
+                flex-grow: 1;
+            }
+            #createAccount {
+                flex: 0 0 auto;
+                min-width: 175px;
+                margin-left: auto;
+            }
+        }
+        .login-form {
+            max-width: 30em;
+            margin: 6em auto 2em auto;
+            .button-section {
+                display: flex;
+                align-items: center;
+                a#forgotPassword {
+                    margin-right: auto;
+                    flex-grow: 1;
+                }
+                button#submit {
+                    flex: 0 0 auto;
+                    min-width: 115px;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+    .login-right {
+        flex: 0 0 35%;
+        margin-left: auto;
+        background-image: url('../../assets/images/login-side-bg.jpg');
+        background-size: cover;
+    }
+}

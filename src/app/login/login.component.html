@@ -1,0 +1,95 @@
+<ng-container>
+  <div class="login-left login-col">
+    <div class="ibm-logo"></div>
+    <div class="product-title">
+      <h4>IBM Digital Banking Platform</h4>
+    </div>
+    <div toastContainer></div>
+    <div class="login-form">
+      <fieldset class="bx--fieldset">
+        <h4>Log In</h4>
+      </fieldset>
+      <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+        <fieldset class="bx--fieldset">
+          <legend class="bx--label">Select Role</legend>
+          <ibm-radio-group aria-label="radiogroup" formControlName="role">
+            <ibm-radio value="admin" [checked]="true">
+              Admin
+            </ibm-radio>
+            <ibm-radio value="nonadmin">
+              Non-Admin
+            </ibm-radio>
+          </ibm-radio-group>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="submitted && f.email.errors" [invalidText]="ctrl.email.invalidText">
+            Email
+            <input ibmText formControlName="email" [invalid]="submitted && f.email.errors"
+              [placeholder]="'Enter email'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="submitted && f.password.errors" [invalidText]="ctrl.password.invalidText">
+            Password
+            <input ibmText type="password" formControlName="password" [invalid]="submitted && f.password.errors"
+              [placeholder]="'Enter password'">
+          </ibm-label>
+        </fieldset>
+
+        <div class=" button-section">
+          <a id="forgotPassword" href="/login" data-toggle="modal" data-target="#forgotPasswordModal">Forgot
+            Password</a>
+          <button id="submit" [ibmButton]="'primary'" [size]="'normal'" type="submit">
+            Login
+            <svg class="bx--btn__icon" width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 6l-1.4 1.4 7.5 7.6H3v2h21.1l-7.5 7.6L18 26l10-10z"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+    <!--close of login-form div-->
+  </div>
+  <!--close of login-left login-col div-->
+  <div class="login-right login-col"></div>
+  <div class="modal fade" id="forgotPasswordModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="forgotPasswordModalLabel">Recover Password</h5>
+          <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+        </div>
+        <div class="modal-body">
+          <h6>Don’t worry, happens to the best of us.</h6>
+          <div toastContainer></div>
+          <div class="idbp-form-container-modal">
+            <form [formGroup]="forgotPasswordForm" (ngSubmit)="onForgotPasswordSubmit()" class="signin-form">
+              <div class="forms-gds">
+                <br />
+                <fieldset class="bx--fieldset">
+                  <ibm-label [invalid]="submitted && fp.fpEmail.errors" [invalidText]="ctrl.fpEmail.invalidText">
+                    Your Email
+                    <input ibmText formControlName="fpEmail" [invalid]="submitted && fp.fpEmail.errors"
+                      [placeholder]="'Enter your email'">
+                  </ibm-label>
+                </fieldset>
+              </div>
+              <div class="modal-footer-button">
+                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal" id="cancel"
+                  #closeAddExpenseModal>Cancel</button>
+                <button class="bx--btn bx--btn--primary" type="submit" id="fpSubmit">Email me a Recovery Link</button>
+              </div>
+            </form>
+            <!-- close of idbp-form-container-modal div -->
+          </div>
+        </div>
+        <!-- close of modal-body div -->
+      </div>
+      <!-- close of modal-content div -->
+    </div>
+    <!-- close of modal-dialog div -->
+  </div>
+  <!-- close of modal fade div -->
+</ng-container>

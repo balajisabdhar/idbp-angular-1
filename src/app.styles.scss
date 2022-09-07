@@ -1,0 +1,414 @@
+.app-wrap {
+  .cb--page {
+      flex: 1 0 100%;
+      background-color: #f3f3f3;
+      padding-left: 60px;
+  }
+  .nonloging{
+      margin-left: 0px; 
+  }
+  .checkbox {
+      margin: 1em !important;     
+  }
+  .cb--page-header__container {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      background: #7eb0f1;
+      color: #fff;
+      .cb--page-header {
+          padding: 1.5rem 2rem 1.5rem;
+          > div {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              .cb--page-header__title {
+                  font-size: 1.5rem;
+              }
+             .cb--page-header__subtitle {
+                  font-size: 1.1rem;
+                  line-height: 1.8em;
+              }            
+          }
+      }
+  }
+}
+.cb--page-header__menus {
+  font-size: 1.1rem;
+  line-height: 6em;
+  float: right;
+  text-align: left;
+  margin-left: 40em;
+}
+.cb--page-content__container {
+  margin: 2rem 3rem 1rem;
+}
+
+/*** cards **/
+.idbp-tile-cards {
+  display: flex;
+  flex-direction: row;
+  ibm-tile {
+      width: 15rem;
+      margin: 1rem 1px;
+      background-color:#fff;
+      flex: 1 0 auto;
+      padding: 1rem 1rem 2rem;
+      &:hover {
+          background-color: #e0e0e0;
+      }
+      .tile-header {
+          font-size: 1rem;
+          font-weight: 600;
+          letter-spacing: 0;
+          line-height: 22px;
+      }        
+  }
+}
+/*** cards end **/
+
+.bx--label {
+  margin-top: -10px !important;
+}
+
+/*** form containers **/
+.idbp-form-container {
+  max-width: 34rem;
+  background-color: #fff;
+  padding: 1rem 1rem 0 1rem;
+  margin-left: 400px;
+  h4 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+  }
+  .form-button {
+      margin: 0rem -1rem 0 -1rem;
+      display: flex;
+      flex-direction: row;
+      button {
+         flex: 1 0 auto;
+      }
+      button#cancel {
+          background-color: #000;
+      }
+  }
+}
+
+a.bx--header__name {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  letter-spacing: 0.16px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem 0 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  line-height: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 0.125rem solid transparent;
+  transition: border-color 110ms;
+  outline: none;
+  background-color: #3169b3;
+}
+/*** form containers end **/
+
+.main-nav {
+  background: white;
+  border-right: 1px solid gray;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 50px;
+  width: 60px;
+  z-index: 1;
+}
+
+.main-nav--expanded {
+  background: white;
+  border-right: 5px solid red;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 50px;
+  width: 10px;
+  z-index: 1;
+}
+.main-navmain-nav--expanded{
+  background: white;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 50px;
+  width: 160px;
+  z-index: 1;
+  opacity: 10;
+}
+.main-nav__item {
+  align-items: center;
+  border-left: 4px solid transparent;
+  box-sizing: border-box;
+  color: gray;
+  display: flex;
+  height: 50px;
+  padding: 15px 20px 15px 16px;
+  white-space: nowrap;
+  width: 100%;
+
+  svg {
+    height: 100%;
+    width: 100%;
+
+    path {
+      fill: #e0e0e0;
+    }
+  }
+
+  .applications_18 svg {
+    height: 24px !important;
+  }
+
+  .svg {
+    &.object {
+      &.dashboard_18 .cls-2,
+      &.spaces_18 .cls-2,
+      &.drafts_18 .cls-1,
+      &.help_18 .cls-2,
+      &.home_18 .cls-1,
+      &.members_18 .st0,
+      &.notifications_18 .cls-1,
+      &.explore_18 .cls-1,
+      &.approve_18 .cls-1,
+      &.analytics_18 .cls-1,
+      &.tasks_18 .cls-1,
+      &.configuration_18 .cls-1,
+      &.subscriptions_18 .cls-1,
+      &.applications_18 .cls-1,
+      &.settings_18 .cls-1,
+      &.resources_18 .st0 {
+        fill: gray !important;
+      }
+
+      &.provider_orgs_18,
+      &.services_18,
+      &.cloud_settings_18 {
+        .st0,
+        .st1 {
+        fill: gray !important;
+          
+        }
+      }
+    }
+    &.action {
+      &.approve_18 .cls-1 {
+        fill: gray !important;
+      }
+    }
+  }
+
+  &:first-child {
+    border-bottom: 1px solid gray;
+  }
+
+  &:last-child {
+    border-top: 1px solid gray;
+    margin-top: auto;
+  }
+
+  &:hover {
+    background: white;
+    color: blue;
+  }
+
+  &.main-nav__item--selected {
+    background: white;
+    border-left: 4px solid ;
+    box-sizing: border-box;
+    color: white;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  &:hover,
+  &.main-nav__item--selected {
+    .svg {
+      &.object {
+        &.dashboard_18 .cls-2,
+        &.spaces_18 .cls-2,
+        &.drafts_18 .cls-1,
+        &.help_18 .cls-2,
+        &.home_18 .cls-1,
+        &.members_18 .st0,
+        &.notifications_18 .cls-1,
+        &.explore_18 .cls-1,
+        &.analytics_18 .cls-1,
+        &.tasks_18 .cls-1,
+        &.subscriptions_18 .cls-1,
+        &.configuration_18 .cls-1,
+        &.applications_18 .cls-1,
+        &.settings_18 .cls-1,
+        &.resources_18 .st0 {
+          fill: blue !important;
+        }
+
+        &.help_18 .cls-1,
+        &.settings_18 .cls-2 {
+          fill: none;
+        }
+
+        &.provider_orgs_18,
+        &.services_18,
+        &.cloud_settings_18 {
+          .st0,
+          .st1,
+          .cls-1,
+          .cls-2 {
+            fill: blue($color: #000000) !important;
+          }
+        }
+      }
+
+      &.action {
+        &.approve_18 {
+          .cls-1 {
+            fill: none !important;
+          }
+        }
+      }
+    }
+  }
+
+  i {
+    margin-right: 18px;
+
+    &.svg svg {
+      height: 32px;
+      width: 20px;
+    }
+
+    &.explore_18 .cls-2,
+    &.approve_18 .cls-2,
+    &.analytics_18 .cls-2,
+    &.xslt_18 .cls-2,
+    &.settings_18 .cls-2,
+    &.dashboard_18 .cls-1,
+    &.spaces_18 .cls-1,
+    &.help_18 .cls-1 {
+      fill: none;
+    }
+  }
+
+  span {
+    opacity: 4;
+    background: #fff;
+    box-sizing: border-box;
+    color: gray;
+    .main-nav--expanded & {
+      opacity: 1;
+    }
+  }
+}
+
+.main-nav--mini {
+  align-items: center;
+  border-bottom: 1px solid ;
+  display: flex;
+  height: 81px;
+  justify-content: center;
+  left: 0;
+  line-height: 80px;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 10px;
+  z-index: 1;
+
+  .icon.svg,
+  .icon.svg svg {
+    display: block;
+    width: 26px;
+  }
+
+  .icon.svg.action.arrow_left_18,
+  .icon.svg.action.arrow_left_18 svg {
+    height: 30px;
+    width: 30px;
+  }
+
+  .layout--admin & {
+    background: blue($color: #000000);
+  }
+
+  .layout--manager &,
+  .layout--designer & {
+    background:blue($color: #000000);
+  }
+
+  .arrow_left_18 .cls-2,
+  .dashboard_18 .cls-1,
+  .spaces_18 .cls-1,
+  .settings_18 .cls-2 {
+    fill: none !important;
+  }
+
+  .dashboard_18 .cls-2,
+  .spaces_18 .cls-2,
+  .services_18 .st0,
+  .cloud_settings_18 .st0,
+  .cloud_settings_18 .st1,
+  .provider_orgs_18 .st0,
+  .resources_18 .st0,
+  .applications_18 .cls-1,
+  .settings_18 .cls-1,
+  .settings_18 .st0,
+  .members_18 .st0 {
+    fill: black !important;
+  }
+
+  .settings_18 {
+    .cls-1,
+    .st0 {
+      fill-rule: evenodd;
+    }
+  }
+
+  .cls-1 {
+    fill: #fff !important;
+  }
+}
+
+.main-nav--cloud {
+  top: 50px;
+}
+
+/*** bx--data-table **/
+.bx--data-table {
+  margin-left: 350px;
+}
+
+/*** for breadcrumb **/
+#breadcrumb {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background: #C6C6C6;
+  color: #fff;
+  padding: 3px 33px 1px;
+  font-size: 18px;
+}

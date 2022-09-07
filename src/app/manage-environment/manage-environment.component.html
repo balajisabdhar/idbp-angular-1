@@ -1,0 +1,38 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title">List of Environments</div>
+            <div _ngcontent-yve-c2="" class="cb--page-header__subtitle">
+                <p>Please click on specific environment tile to manage.</p>
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="idbp">
+        <button ibmButton [routerLink]="['/dashboard/manageenvironment/createenv']" routerLinkActive="active"
+            style="background-color: #3d70b2;" [disabled]="this.envRoutesMatched">Create</button>
+    </div>
+    <div class="manage-environment">
+        <div class="common-actions">
+            <div class="tiles">
+                <ibm-tile *ngFor="let non of this.nonList">
+                    <svg id="_Layer_" width="35" height="40" data-name=" Layer " xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 21.60004">
+                        <path fill="#8cd211"
+                            d="M9.44856,2.2H1V23.8H13V5.75142A3.55147,3.55147,0,0,0,9.44856,2.2ZM10.6,18.30909H3.4V17.5818h7.2Zm0-2.4H3.4v-.72729h7.2Zm0-2.40007H3.4v-.72729h7.2Zm0-2.4H3.4v-.72729h7.2Zm0-2.40007H3.4V7.98175h7.2Z"
+                            transform="translate(-1 -2.19998)"></path>
+                        <path fill="#00b4a0"
+                            d="M16.55155,2.2a3.55157,3.55157,0,0,0-3.55161,3.55144V23.8H25V2.2ZM22.6,18.30909H15.4V17.5818h7.2Zm0-2.4H15.4v-.72729h7.2Zm0-2.40007H15.4v-.72729h7.2Zm0-2.4H15.4v-.72729h7.2Zm0-2.40007H15.4V7.98175h7.2Z"
+                            transform="translate(-1 -2.19998)"></path>
+                    </svg>
+                    <h3><a [routerLink]="['/dashboard/manageenvironment/publish']" [queryParams]="{env: non.name}"
+                            routerLinkActive="active">{{non.name}}</a>
+                    </h3>
+                    <p>{{non.description}}</p>
+                </ibm-tile>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure IDBP TLS Profile </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="idbp">
+        <button ibmButton [routerLink]="['/dashboard/settings/tlsprofile/createtls']" routerLinkActive="active"
+            style="background-color: #3d70b2;" [disabled]="this.tlsRoutesMatched">Create</button>
+    </div>
+    <div>
+        <table class="bx--data-table" *ngIf="this.tlsTemp" style="width: 50%;">
+            <thead>
+                <tr>
+                    <th><span class="bx--table-header-label">Title</span></th>
+                    <th><span class="bx--table-header-label">Name</span></th>
+                    <th><span class="bx--table-header-label">Version</span></th>
+                    <th><span class="bx--table-header-label">Type</span></th>
+                    <th><span class="bx--table-header-label">Activities</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tls of this.tlsList">
+                    <td>{{tls.title}}</td>
+                    <td>{{tls.name}}</td>
+                    <td>{{tls.version}}</td>
+                    <td>{{tls.type}}</td>
+                    <td>
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#editTLSModal"
+                                (click)="onEditTlsProfile(tls._id, tls.title, tls.name, tls.version)"> Edit
+                            </ibm-overflow-menu-option>
+                            <ibm-overflow-menu-option (click)="onDeleteTlsProfile(tls._id)"> Delete
+                            </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bx--data-table" *ngIf="!this.tlsTemp">
+            <p> No Records Available</p>
+        </table>
+    </div>
+    <div class="modal fade" id="editTLSModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTLSModalLabel">Edit TLS Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="editTlsForm" (ngSubmit)="onEditTlsSubmit()" class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.title.pristine && f.title.errors"
+                                        [invalidText]="'Title is required'">
+                                        Title
+                                        <input ibmText formControlName="title" [invalid]="submitted && f.title.errors"
+                                            value="{{this.title}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                                        Name
+                                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                                            value="{{this.name}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.version.pristine && f.version.errors"
+                                        [invalidText]="'Version is required'">
+                                        Version
+                                        <input ibmText formControlName="version"
+                                            [invalid]="submitted && f.version.errors" value="{{this.version}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    Type <br /><br />
+                                    <select class="custom-select" formControlName="type">
+                                        <option value="">Choose your Type</option>
+                                        <option value="One-Way">One-Way</option>
+                                        <option value="Two-Way">Two-Way</option>
+                                    </select>
+                                    <div class="bx--form-requirement" *ngIf="submitted && f.type.errors">
+                                        Type is required
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>

@@ -1,0 +1,133 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure Notification
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div toastContainer></div>
+    <div class="idbp-form-container">
+        <h4>Create Notification</h4>
+        <form [formGroup]="notificationForm" (ngSubmit)="onNotificationSubmit()" class="signin-form"
+            enctype="multipart/form-data">
+            <div class="forms-gds">
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                        Name
+                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                            [placeholder]="'Enter Name'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.port.pristine && f.port.errors"
+                        [invalidText]="'* only numbers are allowed'">
+                        Port
+                        <input ibmText formControlName="port" [invalid]="submitted && f.port.errors"
+                            [placeholder]="'Enter Port'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Authentication Type <br /><br />
+                    <table class="table hover">
+                        <tbody>
+                            <tr *ngFor="let auth of this.authData">
+                                <td><input type="checkbox" formControlName="authType" name="authType" value="{{auth}}"
+                                        (change)="onAuthCboxChangeHandler($event)"> </td>
+                                <td>{{auth}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.authType.errors">
+                        Authentication Type is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset"
+                    *ngIf="this.checkedUserType && this.checkedUserValue == 'User Credentials'">
+                    <ibm-label>
+                        Username
+                        <input ibmText formControlName="username" [placeholder]="'Enter Username'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset"
+                    *ngIf="this.checkedUserType && this.checkedUserValue  == 'User Credentials'">
+                    <ibm-label>
+                        Password
+                        <input ibmText type="password" formControlName="password" [placeholder]="'Enter Password'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset" *ngIf="this.checkedCertType && this.checkedCertValue == 'Certificate'">
+                    <ibm-label>
+                        Certificate
+                        <input ibmText formControlName="certificate" [placeholder]="'Enter certificate'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    TLS Type <br /><br />
+                    <select class="custom-select" formControlName="tlsType">
+                        <option value="">Choose your Type</option>
+                        <option value="One-Way">One-Way</option>
+                        <option value="Two-Way">Two-Way</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.tlsType.errors">
+                        TLS Type is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Purpose <br /><br />
+                    <select class="custom-select" formControlName="purpose">
+                        <option value="">Choose your Purpose</option>
+                        <option value="IDBPUI">IDBPUI</option>
+                        <option value="ACEFramework">ACEFramework</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.purpose.errors">
+                        Purpose is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.from.pristine && f.from.errors" [invalidText]="'Email From is required'">
+                        Email From
+                        <input ibmText formControlName="from" [invalid]="submitted && f.from.errors"
+                            [placeholder]="'Enter Email From'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.to.pristine && f.to.errors" [invalidText]="'Email To is required'">
+                        Email To <br />
+                        Please separate multiple addresses with comma
+                        <input ibmText formControlName="to" [invalid]="submitted && f.to.errors"
+                            [placeholder]="'Enter Email To'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.server.pristine && f.server.errors"
+                        [invalidText]="'SMTP Server is required'">
+                        SMTP Server
+                        <input ibmText formControlName="server" [invalid]="submitted && f.server.errors"
+                            [placeholder]="'Enter SMTP Server'">
+                    </ibm-label>
+                </fieldset>
+                <div class="form-button">
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+                        [routerLink]="['/dashboard/manageresources/notification']"
+                        routerLinkActive="active">Cancel</button>
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Create
+                        Notification</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

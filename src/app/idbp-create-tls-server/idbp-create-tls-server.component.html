@@ -1,0 +1,61 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure TLS Profile </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div toastContainer></div>
+    <div class="idbp-form-container">
+        <h4>Create TLS Server Profile</h4>
+        <form [formGroup]="tlsServerForm" (ngSubmit)="onTLSServerSubmit()" class="signin-form">
+            <div class="forms-gds">
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.title.pristine && f.title.errors" [invalidText]="'Title is required'">
+                        Title
+                        <input ibmText formControlName="title" [invalid]="submitted && f.title.errors"
+                            [placeholder]="'Enter Title'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                        Name
+                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                            [placeholder]="'Enter Name'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.version.pristine && f.version.errors"
+                        [invalidText]="'Version is required'">
+                        Version
+                        <input ibmText formControlName="version" [invalid]="submitted && f.version.errors"
+                            [placeholder]="'Enter Version'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Type <br /><br />
+                    <select class="custom-select" formControlName="type">
+                        <option value="">Choose your Type</option>
+                        <option value="One-Way">One-Way</option>
+                        <option value="Two-Way">Two-Way</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.type.errors">
+                        Type is required
+                    </div>
+                </fieldset>
+                <div class="form-button">
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+                        [routerLink]="['/dashboard/settings/tlsprofile']" routerLinkActive="active">Cancel</button>
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Create
+                        TLS Profile</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

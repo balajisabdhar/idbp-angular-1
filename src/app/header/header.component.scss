@@ -1,0 +1,16 @@
+.header-action-parent {
+    position: initial;
+    &::ng-deep .header-action-children {
+        background-color: #161616;
+        border-bottom: 1px solid #393939;
+        position: absolute;
+        top: 4em;
+        right: 0;
+        text-align: left;
+        min-width: 10em;
+        max-width: 20em;
+        a.bx--header__menu-item {
+            line-height: 2rem;
+        }
+    }
+}

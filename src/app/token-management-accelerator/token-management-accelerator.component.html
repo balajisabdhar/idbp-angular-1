@@ -1,0 +1,75 @@
+<div class="cb--page-header__container">
+  <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+    <div _ngcontent-yve-c2="">
+      <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Token Management Form </div>
+    </div>
+  </header>
+  <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+  <div toastContainer></div>
+  <div class="idbp-form-container">
+    <h4>Token Management</h4>
+    <h5>Please fill in required details. <br /> As per inputs token will be revoked or reactivated</h5>
+    <br>
+    <form [formGroup]="aceacceleratorForm" (ngSubmit)="ontokenmanagementSubmit()" class="signin-form">
+      <div class="forms-gds">
+        <fieldset class="bx--fieldset">
+          <ibm-radio-group aria-label="radiogroup" formControlName="radio" (change)="onRadioChangeHandler($event)">
+            <ibm-radio value="Radio 1">
+              Revoke Token
+            </ibm-radio>
+            <ibm-radio value="Radio 2">
+              Reactivate Token
+            </ibm-radio>
+          </ibm-radio-group>
+          <div class="bx--form-requirement" *ngIf="submitted && f.radio.errors">
+            Radio is required
+          </div>
+        </fieldset>
+
+        <fieldset class="bx--fieldset" *ngIf="this.checkedRadioTypeValue == 'Radio 1'">
+          <ibm-radio-group aria-label="radiogroup" formControlName="radio4" (change)="onRadioChangeHandler($event)">
+            <ibm-radio value="Radio 1">
+              Revoke All
+            </ibm-radio>
+          </ibm-radio-group>
+        </fieldset>
+        <hr *ngIf="this.checkedRadioTypeValue == 'Radio 1'" style="height:2px;">
+        <p *ngIf="this.checkedRadioTypeValue == 'Radio 1'" style="text-align: center;">(OR)</p>
+        <br />
+        <hr *ngIf="this.checkedRadioTypeValue == 'Radio 1'" style="height:2px;">
+        <fieldset class="bx--fieldset" *ngIf="this.checkedRadioTypeValue == 'Radio 1'">
+          <ibm-label>
+            Revoke By Date
+            <input ibmText formControlName="revokeDate" [placeholder]="'Enter Date'">
+          </ibm-label>
+        </fieldset>
+        <fieldset class="bx--fieldset" *ngIf="this.checkedRadioTypeValue == 'Radio 1'">
+          <ibm-label>
+            Revoke By ClientID
+            <input ibmText formControlName="revokeClientID" [placeholder]="'Enter ClientID'">
+          </ibm-label>
+        </fieldset>
+        <fieldset class="bx--fieldset" *ngIf="this.checkedRadioTypeValue == 'Radio 1'">
+          <ibm-label>
+            Revoke By Resource Owner
+            <input ibmText formControlName="revokeOwner" [placeholder]="'Enter Resource Owner'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset" *ngIf="this.checkedRadioTypeValue == 'Radio 2'">
+          <ibm-label>
+            Token ID
+            <input ibmText formControlName="revokeToken" [placeholder]="'Enter Token ID'">
+          </ibm-label>
+        </fieldset>
+        <div class="form-button">
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+            [routerLink]="['/dashboard']" routerLinkActive="active">Cancel</button>
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.app-wrap {
+    display: flex;
+    min-height: 100vh;
+}
+.app-wrap.with-header {
+    padding-top: 3rem;
+}
+.app-wrap.with-footer {
+    padding-bottom: 3.5em;
+}

@@ -1,0 +1,44 @@
+@mixin random-bgr(){
+    border-top-color: rgb(random(255), random(255), random(255));
+}
+:host {
+    .manage-services {
+        margin: 0 30em !important;
+        .common-actions {
+            margin: 2em 0 0 5em;
+            h3 {
+                font-size: 1rem;
+                margin-bottom: 1.5em;
+            }
+        }
+        .tiles {
+            font-size: 1em;
+            display: flex; 
+            flex-flow: row wrap;
+            .bx--tile {
+                min-width: 15em;
+                max-width: 20em;
+                margin: 0 2em 2em 0;
+                background-color: #ffffff;
+                border-top: 3px solid #333333;
+                h4 {
+                    margin: 0 0 1em 0;
+                    font-size: 1rem
+                }
+                p {
+                    font-size: 0.85rem;
+                    margin: 0 0 2em 0;
+                }
+                $num-colors: 100;
+                $base-color: #996B4D;
+                $spectrum: 360deg;
+                $offset:50deg;
+                @for $i from 0 to $num-colors {
+                    &:nth-child(#{$i}) {
+                        @include random-bgr();
+                    }
+                }
+            }
+        }
+    }
+}

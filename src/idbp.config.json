@@ -1,0 +1,21 @@
+{
+    "licenseURL": "http://uiusermanagement-idbp.apps.postings.os.fyre.ibm.com/idbp/license",
+    "adminURL": "http://uiusermanagement-idbp.apps.postings.os.fyre.ibm.com/idbp/admin",
+    "nonAdminURL": "http://uiusermanagement-idbp.apps.postings.os.fyre.ibm.com/idbp/nonadmin",
+    "roleURL": "http://uiusermanagement-idbp.apps.postings.os.fyre.ibm.com/idbp/role",
+    "roleRoutesURL": "http://uiusermanagement-idbp.apps.postings.os.fyre.ibm.com/idbp/routes",
+    "cbsIntegrationURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/cbs",
+    "smtpURL": "http://uiemailservice-idbp.apps.postings.os.fyre.ibm.com/email/smtp-config",
+    "templateURL": "http://uiemailservice-idbp.apps.postings.os.fyre.ibm.com/email/template",
+    "idbpTlsURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/idbptlsserver",
+    "mrBSDetailsURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/mrbsdetails",
+    "mrContainerPlatformURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/mrcontainerplatform",
+    "mrContainerRegistryURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/mrcontainerregistry",
+    "mrAPICURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/mrapic",
+    "mrNotificationURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/mrnotification",   
+	"apicAccelURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/apicacce",
+    "nonEnvURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/nonenv",
+	"deleteEnvURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/deleteenv",
+	"servicesEnvURL": "http://idbpuicbs-idbp.apps.postings.os.fyre.ibm.com/idbp/manageservicesnewdeploy",
+    "mailURL": "http://uiemailservice-idbp.apps.postings.os.fyre.ibm.com/email"
+}

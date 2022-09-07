@@ -1,0 +1,18 @@
+swagger: '2.0'
+info:
+  description: 'This swagger is created for the purpose to upload & store in git. Replace it by original swagger doc w.r.t UI in future.'
+  version: 1.0.2
+  title: Swagger Dummy
+  contact:
+    email: idbp@in.ibm.com
+  license:
+    name: 'IBM'
+    url: 'http://www.ibm.com'
+host: bankconnect.ibm.com
+basePath: /v1
+tags:
+      description: Find out more about our store
+      url: 'http://swagger.io'
+schemes:
+  - https
+  - http

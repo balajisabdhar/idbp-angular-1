@@ -1,0 +1,121 @@
+<div class="cb--page-header__container">
+  <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+    <div _ngcontent-yve-c2="">
+      <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> APIC Accelerator Form </div>
+    </div>
+  </header>
+  <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+  <div toastContainer></div>
+  <div class="idbp-form-container">
+    <h4>APIC Accelerator</h4>
+    <h5>Please fill in required details.<br /> As per inputs source code will be generated with best practices
+      comprising exception handling and Audit logging</h5>
+    <br/><br/>
+    <form [formGroup]="apicacceleratorForm" (ngSubmit)="onApicaccelerationSubmit()" class="signin-form">
+      <div class="forms-gds">
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.title.pristine && f.title.errors" [invalidText]="'API Title is required'">
+            API Title
+            <input ibmText formControlName="title" [invalid]="submitted && f.title.errors" [placeholder]="'API Title'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label>
+            API Description (optional)
+            <input ibmText formControlName="desc" [placeholder]="'Enter Description'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.basepath.pristine && f.basepath.errors" [invalidText]="'basepath is required'">
+            API Base Path
+            <input ibmText formControlName="basepath" [invalid]="submitted && f.basepath.errors"
+              [placeholder]="'Enter Base Path'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.operationpath.pristine && f.operationpath.errors"
+            [invalidText]="'API Operation Path is required'">
+            API Operation Path
+            <input ibmText formControlName="operationpath" [invalid]="submitted && f.operationpath.errors"
+              [placeholder]="'Enter API Operation Path'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.targeturl.pristine && f.targeturl.errors" [invalidText]="'Target URL is required'">
+            Target URL
+            <input ibmText formControlName="targeturl" [invalid]="submitted && f.targeturl.errors"
+              [placeholder]="'Enter Target URL'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          Choose Features <br /><br />
+          <table class="table hover">
+            <tbody>
+              <tr *ngFor="let fe of this.features">
+                <td><input type="checkbox" formControlName="features" name="features" value="{{fe}}"
+                    (change)="onFeaturesCboxChangeHandler($event)"> </td>
+                <td>{{fe}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="bx--form-requirement" *ngIf="submitted && f.features.errors">
+            Features is required
+          </div>
+        </fieldset>
+
+        <hr style="height:1.5px;">
+        <h4> APIC Details </h4>
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.baseURL.pristine && f.baseURL.errors" [invalidText]="'Target URL is required'">
+            Platform Base URL
+            <input ibmText formControlName="baseURL" [invalid]="submitted && f.baseURL.errors"
+              [placeholder]="'Platform Base URL'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.realm.pristine && f.realm.errors" [invalidText]="'Target URL is required'">
+            Realm
+            <input ibmText formControlName="realm" [invalid]="submitted && f.realm.errors" [placeholder]="'Realm'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.username.pristine && f.username.errors" [invalidText]="'Target URL is required'">
+            Username
+            <input ibmText formControlName="username" [invalid]="submitted && f.username.errors"
+              [placeholder]="'Username'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.password.pristine && f.password.errors" [invalidText]="'Password is required'">
+            Password
+            <input ibmText type="password" formControlName="password" [invalid]="submitted && f.password.errors"
+              [placeholder]="'Password'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.prov.pristine && f.prov.errors" [invalidText]="'PROV is required'">
+            Prov Organisation
+            <input ibmText formControlName="prov" [invalid]="submitted && f.prov.errors"
+              [placeholder]="'Prov Organisation'">
+          </ibm-label>
+        </fieldset>
+        <div class="form-button">
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+            [routerLink]="['/dashboard']" routerLinkActive="active">Cancel</button>
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

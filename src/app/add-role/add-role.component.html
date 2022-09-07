@@ -1,0 +1,31 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Role management </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div toastContainer></div>
+    <div class="idbp-form-container">
+        <h4>Create Role</h4>
+        <form [formGroup]="roleForm" (ngSubmit)="onRoleSubmit()" class="signin-form">
+            <div class="forms-gds">
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.role.pristine && f.role.errors" [invalidText]="'* only letters and hyphens are allowed'">
+                        Role Name
+                        <input ibmText formControlName="role" [invalid]="submitted && f.role.errors"
+                            [placeholder]="'Enter role'" />
+                    </ibm-label>
+                </fieldset>
+
+                <div class="form-button">
+                    <button ibmButton id="cancel" type="button" class="ibtn"
+                        [routerLink]="['/dashboard/settings/listusers']" routerLinkActive="active">Cancel</button>
+                    <button ibmButton id="submit" type="submit" class="ibtn">Create Role</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

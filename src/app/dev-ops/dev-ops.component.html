@@ -1,0 +1,219 @@
+<div toastContainer></div>
+<div class="cb--page-content__container" *ngIf="!this.sandboxEmpty">
+  <div>
+    <button class="bx--btn bx--btn--primary" id="deploybutton" style="margin-bottom: 10px;" type="button"
+      (click)="deployEnvironment($event)" [disabled]="this.envDeployedStatus && this.isSuccess"> Deploy
+      Environment</button> <br />
+
+    <span *ngIf="this.envDeployedStatus && this.isSuccess" style="margin: -58px 885px 0px 0px; float: right;">
+      <textarea rows="3" cols="25" placeholder="Enter Openshift Token to delete this environment" id="oc-token"
+        (keyup)="tokenFunc($event)"></textarea>
+    </span>
+    <button class="btn btn-dark" id="deletebutton" style="margin: -58px 700px 0px 0px; float: right;" type="button"
+      (click)="deleteEnvironment($event)" [disabled]="!this.envDeployedStatus && !this.isSuccess"
+      *ngIf="this.token && this.manEnvCBParam != 'idbp-sandbox'">
+      Delete Environment</button> <br />
+    <button class="btn btn-dark" id="resetbutton" style="margin: -58px 700px 0px 0px; float: right;" type="button"
+      (click)="deleteEnvironment($event)" [disabled]="!this.envDeployedStatus && !this.isSuccess"
+      *ngIf="this.token && this.manEnvCBParam == 'idbp-sandbox'">
+      Reset Environment</button> <br />
+  </div>
+
+  <div data-inline-loading class="bx--inline-loading" role="alert" aria-live="assertive" *ngIf="this.isLoading">
+    <div class="bx--inline-loading__animation">
+      <div data-inline-loading-spinner class="bx--loading bx--loading--small">
+        <svg class="bx--loading__svg" viewBox="-75 -75 150 150">
+          <circle class="bx--loading__background" cx="0" cy="0" r="30" />
+          <circle class="bx--loading__stroke" cx="0" cy="0" r="30" />
+        </svg>
+      </div>
+    </div>
+    <p data-inline-loading-text-active class="bx--inline-loading__text">
+      <font size="6">Deployment is in progress, kindly wait..</font>
+    </p>
+  </div>
+  <!--close of bx--inline-loading div-->
+
+  <div class="deploy-env">
+    <form [formGroup]="editEnvForm" class="signin-form">
+      <div class="forms-gds">
+        <fieldset>
+          Name of Environment <input ibmText formControlName="name" [value]="this.name">
+        </fieldset>
+        <fieldset>
+          Description of Environment <input ibmText formControlName="description" [value]="this.desc">
+        </fieldset>
+        <fieldset>
+          Container Platform <input ibmText formControlName="containerPlatform" [value]="this.containerPlat">
+        </fieldset>
+        <fieldset>
+          Container Registry <input ibmText formControlName="containerRegister" [value]="this.containerReg">
+        </fieldset>
+        <fieldset>
+          APIC <input ibmText formControlName="apic" [value]="this.apic">
+        </fieldset>
+        <fieldset>
+          Banking Services <input ibmText formControlName="bankService" [value]="this.bankServices">
+        </fieldset>
+        <fieldset *ngIf="this.manEnvCBParam != 'idbp-sandbox' ">
+          Core Banking Service <input ibmText formControlName="coreBank" [value]="this.cbs">
+        </fieldset>
+        <fieldset>
+          Notification <input ibmText formControlName="notification" [value]="this.not">
+        </fieldset>
+        <fieldset *ngFor="let service of this.services">
+          Services Associated <input ibmText formControlName="services" [value]="this.service.name">
+        </fieldset>
+      </div>
+    </form>
+  </div>
+  <!--close of deploy-env div-->
+</div>
+<!--close of cb--page-content__container div-->
+
+<div class="idbp-form-container" *ngIf="this.sandboxEmpty">
+  <h4>Create Sandbox Environment</h4>
+  <form [formGroup]="sandboxEnvForm" (ngSubmit)="onSandboxEnvSubmit()" class="signin-form">
+    <div class="forms-gds">
+      <fieldset class="bx--fieldset">
+        <ibm-label>
+          Name
+          <input ibmText formControlName="name" value="idbp-sandbox">
+        </ibm-label>
+      </fieldset>
+
+      <fieldset class="bx--fieldset">
+        <ibm-label>
+          Description (optional)
+          <input ibmText formControlName="desc" [placeholder]="'Enter Description'">
+        </ibm-label>
+      </fieldset>
+
+      <fieldset class="bx--fieldset">
+        Container Platform
+        <a href="/dashboard/manageresources/createcontainerplatform">
+          <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32"
+            height="32" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform; margin-left: 355px;">
+            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+            </path>
+            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+            </path>
+            <title>Create Container Platform</title>
+          </svg>
+        </a>
+        <br /><br />
+        <select class="custom-select" formControlName="containerPlatform">
+          <option value="">Choose your Container Platform</option>
+          <option *ngFor="let plat of cPlatformList" [ngValue]="plat.name">{{plat.name}}</option>
+        </select>
+        <div class="bx--form-requirement" *ngIf="submitted && f.containerPlatform.errors">
+          Container Platform is required
+        </div>
+      </fieldset>
+
+      <fieldset class="bx--fieldset">
+        Container Registry
+        <a href="/dashboard/manageresources/containerregistry/createcontainerregistry">
+          <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32"
+            height="32" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform; margin-left: 358px;">
+            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+            </path>
+            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+            </path>
+            <title>Create Container Registry</title>
+          </svg>
+        </a>
+        <br /><br />
+        <select class="custom-select" formControlName="containerRegistry">
+          <option value="">Choose your Container Registry</option>
+          <option *ngFor="let registry of cRegistryList" [ngValue]="registry.name">{{registry.name}}
+          </option>
+        </select>
+        <div class="bx--form-requirement" *ngIf="submitted && f.containerRegistry.errors">
+          Container Registry is required
+        </div>
+      </fieldset>
+
+      <fieldset class="bx--fieldset">
+        APIC
+        <a href="/dashboard/manageresources/apic/createapic">
+          <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32"
+            height="32" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform; margin-left: 444px;">
+            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+            </path>
+            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+            </path>
+            <title>Create APIC</title>
+          </svg>
+        </a>
+        <br /><br />
+        <select class="custom-select" formControlName="apic">
+          <option value="">Choose your APIC</option>
+          <option *ngFor="let ap of apicList" [ngValue]="ap.name">{{ap.name}}</option>
+        </select>
+        <div class="bx--form-requirement" *ngIf="submitted && f.apic.errors">
+          APIC is required
+        </div>
+      </fieldset>
+
+      <fieldset class="bx--fieldset">
+        Banking Standard
+        <br /> <br />
+        <select class="custom-select" formControlName="bankingServices">
+          <option value="">Choose your Banking Standard</option>
+          <option *ngFor="let bank of bankList" [ngValue]="bank.data.name">
+            {{bank.data.title}}</option>
+        </select>
+        <div class="bx--form-requirement" *ngIf="submitted && f.bankingServices.errors">
+          Banking Standard is required
+        </div>
+      </fieldset>
+
+      <fieldset class="bx--fieldset">
+        Notification
+        <a href="/dashboard/manageresources/notification/createnotification">
+          <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" width="32"
+            height="32" viewBox="0 0 32 32" aria-hidden="true" style="will-change: transform; margin-left: 401px;">
+            <path d="M16,4A12,12,0,1,1,4,16,12,12,0,0,1,16,4m0-2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Z">
+            </path>
+            <path d="M22 15L17 15 17 10 15 10 15 15 10 15 10 17 15 17 15 22 17 22 17 17 22 17 22 15z">
+            </path>
+            <title>Create Notification</title>
+          </svg>
+        </a>
+        <br /><br />
+        <select class="custom-select" formControlName="notification">
+          <option value="">Choose your Notification</option>
+          <option *ngFor="let noti of notificationList" [ngValue]="noti.name">{{noti.name}}
+          </option>
+        </select>
+        <div class="bx--form-requirement" *ngIf="submitted && f.notification.errors">
+          Notification is required
+        </div>
+      </fieldset>
+
+      <fieldset class="bx--fieldset">
+        Select the Service to be deployed <br /><br />
+        <table class="table hover">
+          <tbody>
+            <tr *ngFor="let ser of this.servicesDeploy">
+              <td><input type="checkbox" formControlName="services" name="services" value="{{ser}}"
+                  (change)="onServicesCboxChangeHandler($event)"> </td>
+              <td>{{ser}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="bx--form-requirement" *ngIf="submitted && f.services.errors">
+          Services is required
+        </div>
+      </fieldset>
+      <div class="form-button">
+        <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+          [routerLink]="['/dashboard/manageenvironment']" routerLinkActive="active">Cancel</button>
+        <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Create
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+<!--close of idbp-form-container div-->

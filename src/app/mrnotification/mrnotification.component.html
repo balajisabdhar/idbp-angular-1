@@ -1,0 +1,115 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure Notification
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="idbp">
+        <button ibmButton [routerLink]="['/dashboard/manageresources/notification/createnotification']"
+            routerLinkActive="active" style="background-color: #3d70b2;"
+            [disabled]="this.notificationRoutesMatched">Create</button>
+    </div>
+    <div>
+        <table class="bx--data-table" *ngIf="this.notificationTemp" style="width: 67%;">
+            <thead>
+                <tr>
+                    <th><span class="bx--table-header-label">Name</span></th>
+                    <th><span class="bx--table-header-label">Authentication Type</span></th>
+                    <th><span class="bx--table-header-label">TLS Type</span></th>
+                    <th><span class="bx--table-header-label">Purpose</span></th>
+                    <th><span class="bx--table-header-label">Email From</span></th>
+                    <th><span class="bx--table-header-label">Email To</span></th>
+                    <th><span class="bx--table-header-label">SMTP Server</span></th>
+                    <th><span class="bx--table-header-label">Activities</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let notification of this.notificationList">
+                    <td>{{notification.name}}</td>
+                    <td>{{notification.authType}}</td>
+                    <td>{{notification.tlsType}}</td>
+                    <td>{{notification.purpose}}</td>
+                    <td>{{notification.from}}</td>
+                    <td>{{notification.to}}</td>
+                    <td>{{notification.server}}</td>
+                    <td>
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#editNotificationModal"
+                                (click)="onEditNotification(notification._id, notification.name, notification.port)">
+                                Edit
+                            </ibm-overflow-menu-option>
+                            <ibm-overflow-menu-option (click)="onDeleteNotification(notification._id)"> Delete
+                            </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bx--data-table" *ngIf="!this.notificationTemp">
+            <p> No Records Available</p>
+        </table>
+    </div>
+    <div class="modal fade" id="editNotificationModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editNotificationModalLabel">Edit Notification</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="editNotificationForm" (ngSubmit)="onEditNotificationSubmit()"
+                            class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                                        Name
+                                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                                            value="{{this.name}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.port.pristine && f.port.errors"
+                                        [invalidText]="'* only numbers are allowed'">
+                                        Port
+                                        <input ibmText formControlName="port" [invalid]="submitted && f.port.errors"
+                                            value="{{this.port}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    Purpose <br /><br />
+                                    <select class="custom-select" formControlName="purpose">
+                                        <option value="">Choose your Purpose</option>
+                                        <option value="IDBPUI">IDBPUI</option>
+                                        <option value="ACEFramework">ACEFramework</option>
+                                    </select>
+                                    <div class="bx--form-requirement" *ngIf="submitted && f.purpose.errors">
+                                        Purpose is required
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>

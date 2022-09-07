@@ -1,0 +1,126 @@
+<div class="cb--page-header__container">
+  <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+    <div _ngcontent-yve-c2="">
+      <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> ACE Accelerator Form </div>
+    </div>
+  </header>
+  <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+  <div toastContainer></div>
+  <div class="idbp-form-container">
+    <h4>ACE Accelerator</h4>
+    <h5>Please fill in required details.<br /> As per inputs source code will be generated with best practices
+      comprising exception handling and Audit logging</h5>
+    <br>
+    <form [formGroup]="aceacceleratorForm" (ngSubmit)="onaceaccelerationSubmit()" class="signin-form">
+      <div class="forms-gds">
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.initServer.pristine && f.initServer.errors"
+            [invalidText]="'Init Server is required'">
+            Integration Server
+            <input ibmText formControlName="initServer" [invalid]="submitted && f.initServer.errors"
+              [placeholder]="'Integration Server'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.appName.pristine && f.appName.errors" [invalidText]="'Application Name is required'">
+            Application Name
+            <input ibmText formControlName="appName" [invalid]="submitted && f.appName.errors"
+              [placeholder]="'Application Name'">
+          </ibm-label>
+        </fieldset>
+
+        <h4>Select Features</h4>
+        <fieldset class="bx--fieldset">
+          <ibm-radio-group aria-label="radiogroup" formControlName="features" orientation='vertical'>
+            <ibm-radio value="HTTP to HTTP proxy">
+              HTTP to HTTP proxy
+            </ibm-radio>
+            <ibm-radio value="HTTP to HTTP with JSON-SOAP Transformation">
+              HTTP to HTTP with JSON-SOAP Transformation
+            </ibm-radio>
+            <ibm-radio value="HTTP to MQPut Proxy">
+              HTTP to MQPut Proxy
+            </ibm-radio>
+            <ibm-radio value="HTTP to MQPut Proxy with JSON-SOAP Transformation">
+              HTTP to MQPut Proxy with JSON-SOAP Transformation
+            </ibm-radio>
+            <ibm-radio value="MQGET to HTTP proxy to MQPUT">
+              MQGET to HTTP proxy to MQPUT
+            </ibm-radio>
+            <ibm-radio value="MQGET to HTTP with JSON-SOAP Transformation to MQPUT">
+              MQGET to HTTP with JSON-SOAP Transformation to MQPUT
+            </ibm-radio>
+            <ibm-radio value="MQGET to MQPut Proxy to MQPUT">
+              MQGET to MQPut Proxy to MQPUT
+            </ibm-radio>
+            <ibm-radio value="MQGET to MQPut Proxy with JSON-SOAP Transformation to MQPUT">
+              MQGET to MQPut Proxy with JSON-SOAP Transformation to MQPUT
+            </ibm-radio>
+          </ibm-radio-group>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.transformationFilePath.pristine && f.transformationFilePath.errors"
+            [invalidText]="'transformation File Path is required'">
+            Transformation File Path
+            <input ibmText formControlName="transformationFilePath"
+              [invalid]="submitted && f.transformationFilePath.errors" [placeholder]="'Transformation File Path'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.aceConfiguration.pristine && f.aceConfiguration.errors"
+            [invalidText]="'transformation File Path is required'">
+            ACE Configuration Name
+            <input ibmText formControlName="aceConfiguration" [invalid]="submitted && f.aceConfiguration.errors"
+              [placeholder]="'ACE Configuration Name'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.minCPU.pristine && f.minCPU.errors" [invalidText]="'Min CPU is required'">
+            Min CPU
+            <input ibmText formControlName="minCPU" [invalid]="submitted && f.minCPU.errors" [placeholder]="'Min CPU'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.maxCPU.pristine && f.maxCPU.errors" [invalidText]="'Max CPU File Path is required'">
+            Max CPU
+            <input ibmText formControlName="maxCPU" [invalid]="submitted && f.maxCPU.errors" [placeholder]="'Max CPU'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.replicas.pristine && f.replicas.errors" [invalidText]="'Replicas is required'">
+            Replicas
+            <input ibmText formControlName="replicas" [invalid]="submitted && f.replicas.errors"
+              [placeholder]="'Replicas'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.minRAM.pristine && f.minRAM.errors" [invalidText]="'Min RAM is required'">
+            Min RAM (GB)
+            <input ibmText formControlName="minRAM" [invalid]="submitted && f.minRAM.errors" [placeholder]="'Min RAM'">
+          </ibm-label>
+        </fieldset>
+
+        <fieldset class="bx--fieldset">
+          <ibm-label [invalid]="!f.maxRAM.pristine && f.maxRAM.errors" [invalidText]="'Max RAM File Path is required'">
+            Max RAM (GB)
+            <input ibmText formControlName="maxRAM" [invalid]="submitted && f.maxRAM.errors" [placeholder]="'Max RAM'">
+          </ibm-label>
+        </fieldset>
+        <div class="form-button">
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+            [routerLink]="['/dashboard']" routerLinkActive="active">Cancel</button>
+          <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

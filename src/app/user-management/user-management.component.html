@@ -1,0 +1,73 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Manage IDBP platform roles and
+                user
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="idbp">
+        <h3>Roles</h3>
+        <button ibmButton [routerLink]="['/dashboard/settings/listusers/createrole']" routerLinkActive="active"
+            style="background-color: #3d70b2;" [disabled]="this.roleRoutesMatched">Create</button>
+        <div>
+            <table class="bx--data-table" *ngIf="this.roleTemp" style="width: 50%;">
+                <thead>
+                    <tr>
+                        <th><span class="bx--table-header-label">Roles</span></th>
+                        <th><span class="bx--table-header-label">Activities</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let role of this.rolesList">
+                        <td>{{role.roleName}}</td>
+                        <td>
+                            <ibm-overflow-menu>
+                                <ibm-overflow-menu-option (click)="onDeleteRole(role._id)"> Delete
+                                </ibm-overflow-menu-option>
+                            </ibm-overflow-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="bx--data-table" *ngIf="!this.roleTemp">
+                <p> No Records Available</p>
+            </table>
+        </div>
+
+        <h3>Users</h3>
+        <button ibmButton [routerLink]="['/dashboard/settings/listusers/createuser']" routerLinkActive="active"
+            style="background-color: #3d70b2;" [disabled]="this.userRoutesMatched">Create</button>
+
+        <div>
+            <table class="bx--data-table" *ngIf="this.userTemp" style="width: 50%;">
+                <thead>
+                    <tr>
+                        <th><span class="bx--table-header-label">Email</span></th>
+                        <th><span class="bx--table-header-label">Role</span></th>
+                        <th><span class="bx--table-header-label">Activities</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of this.usersList">
+                        <td>{{user.email}}</td>
+                        <td>{{user.role}}</td>
+                        <td>
+                            <ibm-overflow-menu>
+                                <ibm-overflow-menu-option (click)="onDeleteUser(user._id)"> Delete
+                                </ibm-overflow-menu-option>
+                            </ibm-overflow-menu>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="bx--data-table" *ngIf="!this.userTemp">
+                <p> No Records Available</p>
+            </table>
+        </div>
+    </div>
+    <!--close of idbp div-->
+</div>

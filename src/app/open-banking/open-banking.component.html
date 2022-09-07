@@ -1,0 +1,111 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title">{{this.packParam}}</div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div toastContainer></div>
+    <div class="open-banking">
+        <div class="common-actions">
+            <div class="tiles" *ngFor="let bs of this.bsArray">
+                <ibm-tile>
+                    <svg id="_Layer_" width="25" height="30" data-name=" Layer " xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 21.60004">
+                        <path fill="#8cd211"
+                            d="M9.44856,2.2H1V23.8H13V5.75142A3.55147,3.55147,0,0,0,9.44856,2.2ZM10.6,18.30909H3.4V17.5818h7.2Zm0-2.4H3.4v-.72729h7.2Zm0-2.40007H3.4v-.72729h7.2Zm0-2.4H3.4v-.72729h7.2Zm0-2.40007H3.4V7.98175h7.2Z"
+                            transform="translate(-1 -2.19998)"></path>
+                        <path fill="#00b4a0"
+                            d="M16.55155,2.2a3.55157,3.55157,0,0,0-3.55161,3.55144V23.8H25V2.2ZM22.6,18.30909H15.4V17.5818h7.2Zm0-2.4H15.4v-.72729h7.2Zm0-2.40007H15.4v-.72729h7.2Zm0-2.4H15.4v-.72729h7.2Zm0-2.40007H15.4V7.98175h7.2Z"
+                            transform="translate(-1 -2.19998)"></path>
+                    </svg>
+
+                    <div class="overflow-menu" style="margin-left: 80px; margin-top: -30px;">
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#servicesModal"
+                                (click)="onDeployServices(bs.name)"> Deploy
+                            </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </div>
+
+                    <div class="bank-std-data">
+                        <p>{{bs.name}}</p>
+                        <p>{{bs.detail}}</p>
+                    </div>
+                </ibm-tile>
+            </div>
+        </div>
+        <!--close of common-actions div-->
+    </div>
+    <!--close of open-banking div-->
+    <div class="modal fade" id="servicesModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="servicesModalLabel">Deploy Services</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="servicesEnvForm" (ngSubmit)="onDeploySubmit()" class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset" *ngIf="this.servicesClicked == 'Payments'">
+                                    <ibm-label [invalid]="!f.token.pristine && f.token.errors"
+                                        [invalidText]="'Token is required'">
+                                        Openshift Token
+                                        <input ibmText type="password" formControlName="token"
+                                            [invalid]="submitted && f.token.errors" [placeholder]="'Enter Token'">
+                                    </ibm-label>
+                                </fieldset>
+                                <fieldset class="bx--fieldset" *ngIf="this.servicesClicked == 'Payments'">
+                                    <select class="custom-select" formControlName="payEnvs">
+                                        <option value="">Choose your Environment</option>
+                                        <option *ngFor="let payment of this.paymentsServiceEnvs"
+                                            [ngValue]="payment.name">
+                                            {{payment.name}}</option>
+                                    </select>
+                                    <div class="bx--form-requirement" *ngIf="submitted && f.payEnvs.errors">
+                                        Environment is required for deployment
+                                    </div>
+                                </fieldset>
+                                <fieldset class="bx--fieldset" *ngIf="this.servicesClicked == 'Accounts'">
+                                    <ibm-label [invalid]="!f.token.pristine && f.token.errors"
+                                        [invalidText]="'Token is required'">
+                                        Openshift Token
+                                        <input ibmText type="password" formControlName="token"
+                                            [invalid]="submitted && f.token.errors" [placeholder]="'Enter Token'">
+                                    </ibm-label>
+                                </fieldset>
+                                <fieldset class="bx--fieldset" *ngIf="this.servicesClicked == 'Accounts'">
+                                    <select class="custom-select" formControlName="accEnvs">
+                                        <option value="">Choose your Environment</option>
+                                        <option *ngFor="let account of this.accountsServiceEnvs"
+                                            [ngValue]="account.name">
+                                            {{account.name}}</option>
+                                    </select>
+                                    <div class="bx--form-requirement" *ngIf="submitted && f.accEnvs.errors">
+                                        Environment is required for deployment
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit"
+                                    [disabled]="this.deployButtonClicked">Deploy</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>

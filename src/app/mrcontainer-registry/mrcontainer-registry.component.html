@@ -1,0 +1,136 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure Container Registry
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="idbp">
+        <button ibmButton [routerLink]="['/dashboard/manageresources/containerregistry/createcontainerregistry']"
+            routerLinkActive="active" style="background-color: #3d70b2;"
+            [disabled]="this.cRegistryRoutesMatched">Create</button>
+    </div>
+    <div>
+        <table class="bx--data-table" *ngIf="this.containerRegistryTemp" style="width: 30%;">
+            <thead>
+                <tr>
+                    <th><span class="bx--table-header-label">Name</span></th>
+                    <th><span class="bx--table-header-label">Authentication Type</span></th>
+                    <th><span class="bx--table-header-label">Activities</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let registry of this.containerRegistryList">
+                    <td>{{registry.name}}</td>
+                    <td>{{registry.authType}}</td>
+                    <td>
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#editContainerRegistryModal"
+                                (click)="onEditContainerRegistry(registry._id, registry.name, registry.address)">
+                                Edit
+                            </ibm-overflow-menu-option>
+                            <ibm-overflow-menu-option (click)="onDeleteContainerRegistry(registry._id)"> Delete
+                            </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bx--data-table" *ngIf="!this.containerRegistryTemp">
+            <p> No Records Available</p>
+        </table>
+    </div>
+    <div class="modal fade" id="editContainerRegistryModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editContainerRegistryModalLabel">Edit Container Registry</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="editContainerRegistryForm" (ngSubmit)="onEditContainerRegistrySubmit()"
+                            class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                                        Name
+                                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                                            value="{{this.name}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.address.pristine && f.address.errors"
+                                        [invalidText]="'Address is required'">
+                                        Address
+                                        <input ibmText formControlName="address"
+                                            [invalid]="submitted && f.address.errors" value="{{this.add}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    Authentication Type <br /><br />
+                                    <table class="table hover">
+                                        <tbody>
+                                            <tr *ngFor="let auth of this.authData">
+                                                <td><input type="checkbox" formControlName="authType" name="authType"
+                                                        value="{{auth}}" (change)="onAuthCboxChangeHandler($event)">
+                                                </td>
+                                                <td>{{auth}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="bx--form-requirement" *ngIf="submitted && f.authType.errors">
+                                        Authentication Type is required
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset"
+                                    *ngIf="this.checkedUserType && this.checkedUserValue == 'User Credentials'">
+                                    <ibm-label>
+                                        Username
+                                        <input ibmText formControlName="username" [placeholder]="'Enter Username'">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset"
+                                    *ngIf="this.checkedUserType && this.checkedUserValue  == 'User Credentials'">
+                                    <ibm-label>
+                                        Password
+                                        <input ibmText type="password" formControlName="password"
+                                            [placeholder]="'Enter Password'">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset"
+                                    *ngIf="this.checkedTokenType && this.checkedTokenValue == 'Token'">
+                                    <ibm-label>
+                                        Token
+                                        <input ibmText type="password" formControlName="token"
+                                            [placeholder]="'Enter Token'">
+                                    </ibm-label>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>

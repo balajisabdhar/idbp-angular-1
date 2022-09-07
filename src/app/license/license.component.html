@@ -1,0 +1,36 @@
+<div class="container">
+    <form [formGroup]="licenseForm" (ngSubmit)="onLicenseSubmit()">
+        <div class="form-group form-check">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <h1>IBM IDBP License Agreement</h1>
+            <p>
+                <br />
+                These Software License Terms and Conditions apply to and are incorporated by reference into the ordering
+                document
+                made by and between the Licensor/Service Provider and the Customer. <br /> This License Agreement sets
+                forth the terms and conditions under which Customer may <br /> (i) use Licensor’s proprietary software
+                (the Licensed Software/Subscribed Software) that is specifically licensed to Customer pursuant to the
+                Quote; and <br /> (ii) use the user documentation that Licensor makes generally available in hard copy
+                or electronic form to its general customer base in conjunction with the licensing of such Applications
+                (the “Documentation”). For purposes of this License Agreement, the term “Software” means the
+                Applications listed in an applicable Quote, the Documentation, and any Updates (as defined in the
+                Maintenance and Support Terms and Conditions incorporated by reference).
+                <br />Customer acknowledges and agrees that it is not relying on any agreement, representation,
+                statement, or warranty (whether or not in writing) made or given prior to the Term Start Date, except as
+                expressly provided herein with respect to the Software provided hereunder or any Maintenance and Support
+                Services under the applicable Quote. Licensor and Customer hereby agree as follows:
+            </p> <br /><br />
+            <label>Terms &amp; Conditions</label> <br /><br />
+            <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input"
+                [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+            <label for="acceptTerms" class="form-check-label">I Accept Terms & Conditions</label>
+            <div *ngIf="submitted && f.acceptTerms.errors" class="bx--form-requirement">Terms &amp; Conditions are
+                required
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Accept</button>
+        </div>
+    </form>
+</div>

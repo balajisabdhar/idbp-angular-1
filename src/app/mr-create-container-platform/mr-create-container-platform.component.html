@@ -1,0 +1,70 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Configure Container Platform
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div toastContainer></div>
+    <div class="idbp-form-container">
+        <h4>Create Container Platform Details</h4>
+        <form [formGroup]="containerPlatForm" (ngSubmit)="onContainerPlatformSubmit()" class="signin-form">
+            <div class="forms-gds">
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                        Name
+                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                            [placeholder]="'Enter Name'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.domain.pristine && f.domain.errors" [invalidText]="'Domain is required'">
+                        Domain
+                        <input ibmText formControlName="domain" [invalid]="submitted && f.domain.errors"
+                            [placeholder]="'Enter Domain'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    Container Platform Type <br /><br />
+                    <select class="custom-select" formControlName="platformType">
+                        <option value="">Choose your Platform Type</option>
+                        <!-- <option value="K8s">K8s</option> -->
+                        <option value="OCP">OCP</option>
+                    </select>
+                    <div class="bx--form-requirement" *ngIf="submitted && f.platformType.errors">
+                        Container Platform Type is required
+                    </div>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.address.pristine && f.address.errors"
+                        [invalidText]="'Address is required'">
+                        Address
+                        <input ibmText formControlName="address" [invalid]="submitted && f.address.errors"
+                            [placeholder]="'Enter Address'">
+                    </ibm-label>
+                </fieldset>
+
+                <fieldset class="bx--fieldset">
+                    <ibm-label [invalid]="!f.token.pristine && f.token.errors" [invalidText]="'Token is required'">
+                        Authentication Token
+                        <input ibmText type="password" formControlName="token" [invalid]="submitted && f.token.errors"
+                            [placeholder]="'Enter Token'">
+                    </ibm-label>
+                </fieldset>
+                <div class="form-button">
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="cancel" type="button" class="ibtn"
+                        [routerLink]="['/dashboard/manageresources']" routerLinkActive="active">Cancel</button>
+                    <button [ibmButton]="ibmButton" [size]="'normal'" id="submit" type="submit" class="ibtn">Create
+                        Container Platform</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

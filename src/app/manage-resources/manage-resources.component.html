@@ -1,0 +1,131 @@
+<div class="cb--page-header__container">
+    <header _ngcontent-yve-c2="" class="cb--page-header" role="banner">
+        <div _ngcontent-yve-c2="">
+            <div _ngcontent-yve-c2="" class="cb--page-header__title" id="page-title"> Manage Resources
+            </div>
+            <div _ngcontent-yve-c2="" class="cb--page-header__subtitle">
+                Configure Registries, Platforms, Notifications & various other resources for IDBP platform
+            </div>
+        </div>
+    </header>
+    <div id="breadcrumb"></div>
+</div>
+<div class="cb--page-content__container">
+    <div class="manage-resources-tabs">
+        <nav mat-tab-nav-bar>
+            <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link">{{link.label}}
+            </a>
+        </nav>
+    </div>
+    <div class="idbp">
+        <button ibmButton [routerLink]="['/dashboard/manageresources/createcontainerplatform']"
+            style="background-color: #3d70b2;" routerLinkActive="active"
+            [disabled]="this.cPlatformRoutesMatched">Create</button>
+    </div>
+    <div>
+        <table class="bx--data-table" *ngIf="this.containerPlatformTemp" style="width:20%;">
+            <thead>
+                <tr>
+                    <th><span class="bx--table-header-label">Name</span></th>
+                    <th><span class="bx--table-header-label">Platform Type</span></th>
+                    <th><span class="bx--table-header-label">Activities</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let platform of this.containerPlatformList">
+                    <td>{{platform.name}}</td>
+                    <td>{{platform.platformType}}</td>
+                    <td>
+                        <ibm-overflow-menu>
+                            <ibm-overflow-menu-option data-toggle="modal" data-target="#editContainerPlatformModal"
+                                (click)="onEditContainerPlatform(platform._id, platform.name, platform.domain, platform.address)">
+                                Edit
+                            </ibm-overflow-menu-option>
+                            <ibm-overflow-menu-option (click)="onDeleteContainerPlatform(platform._id)"> Delete
+                            </ibm-overflow-menu-option>
+                        </ibm-overflow-menu>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="bx--data-table" *ngIf="!this.containerPlatformTemp">
+            <p> No Records Available</p>
+        </table>
+    </div>
+    <div class="modal fade" id="editContainerPlatformModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editContainerPlatformModalLabel">Edit Container Platform</h5>
+                    <button type="button" class="close" data-dismiss="modal" #closeAddExpenseModal>&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div toastContainer></div>
+                    <div class="idbp-form-container-modal">
+                        <form [formGroup]="editContainerPlatForm" (ngSubmit)="onEditContainerPlatformSubmit()"
+                            class="signin-form">
+                            <div class="forms-gds">
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.name.pristine && f.name.errors"
+                                        [invalidText]="'* only starting with small letters and hyphens are allowed'">
+                                        Name
+                                        <input ibmText formControlName="name" [invalid]="submitted && f.name.errors"
+                                            value="{{this.name}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.domain.pristine && f.domain.errors"
+                                        [invalidText]="'Domain is required'">
+                                        Domain
+                                        <input ibmText formControlName="domain" [invalid]="submitted && f.domain.errors"
+                                            value="{{this.domain}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    Container Platform Type <br /><br />
+                                    <select class="custom-select" formControlName="platformType">
+                                        <option value="">Choose your Platform Type</option>
+                                        <option value="OCP">OCP</option>
+                                    </select>
+                                    <div class="bx--form-requirement" *ngIf="submitted && f.platformType.errors">
+                                        Container Platform Type is required
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.address.pristine && f.address.errors"
+                                        [invalidText]="'Address is required'">
+                                        Address
+                                        <input ibmText formControlName="address"
+                                            [invalid]="submitted && f.address.errors" value="{{this.add}}">
+                                    </ibm-label>
+                                </fieldset>
+
+                                <fieldset class="bx--fieldset">
+                                    <ibm-label [invalid]="!f.token.pristine && f.token.errors"
+                                        [invalidText]="'Token is required'">
+                                        Authentication Token
+                                        <input ibmText type="password" formControlName="token"
+                                            [invalid]="submitted && f.token.errors" [placeholder]="'Enter Token'">
+                                    </ibm-label>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer-button">
+                                <button class="bx--btn bx--btn--secondary" type="button" data-dismiss="modal"
+                                    id="cancel" #closeAddExpenseModal>Cancel</button>
+                                <button class="bx--btn bx--btn--primary" type="submit" id="submit">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!--close of idbp-form-container-modal div-->
+                </div>
+                <!--close of modal-body div-->
+            </div>
+            <!--close of modal-content div-->
+        </div>
+        <!--close of modal-dialog div-->
+    </div>
+    <!--close of modal fade div-->
+</div>
