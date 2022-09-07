@@ -6,7 +6,8 @@ RUN npm install
 COPY . .
 RUN npm run build
 ### STAGE 2: Run ###
-FROM nginx:1.17.1-alpine
+###FROM nginx:1.17.1-alpine
+FROM nginxinc/nginx-unprivileged
 RUN chmod -R 777 /var/cache/
 ### COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist/idbp-partner-portal /usr/share/nginx/html
